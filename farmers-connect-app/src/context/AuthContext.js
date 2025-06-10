@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { auth } from '../firebaseConfig';
+import { auth, db } from '../firebaseConfig'; // Import db
 import { 
   onAuthStateChanged,
   signInWithPopup,
@@ -9,6 +9,7 @@ import {
   createUserWithEmailAndPassword,
   signOut
 } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore'; // Import Firestore functions
 
 const AuthContext = createContext();
 
@@ -18,16 +19,50 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
+  const [userProfile, setUserProfile] = useState(null); // State for Firestore user profile
   const [loading, setLoading] = useState(true);
 
+  const fetchUserProfile = async (userId) => {
+    if (!userId) {
+      setUserProfile(null);
+      return;
+    }
+    try {
+      const userDocRef = doc(db, 'users', userId);
+      const docSnap = await getDoc(userDocRef);
+      if (docSnap.exists()) {
+        setUserProfile(docSnap.data());
+      } else {
+        console.log("No such user profile document!");
+        setUserProfile(null); // Or set a default profile: { isFarmer: false, email: currentUser?.email }
+      }
+    } catch (error) {
+      console.error("Error fetching user profile:", error);
+      setUserProfile(null);
+    }
+  };
+
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setCurrentUser(user);
+      if (user) {
+        await fetchUserProfile(user.uid);
+      } else {
+        setUserProfile(null);
+      }
       setLoading(false);
     });
 
     return unsubscribe;
   }, []);
+
+  const refreshUserProfile = async () => {
+    if (currentUser) {
+      setLoading(true);
+      await fetchUserProfile(currentUser.uid);
+      setLoading(false);
+    }
+  };
 
   const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
@@ -53,11 +88,13 @@ export function AuthProvider({ children }) {
 
   const value = {
     currentUser,
+    userProfile, // Add userProfile to context
     signInWithGoogle,
     signInWithFacebook,
     signInWithEmail,
     signUpWithEmail,
-    logout
+    logout,
+    refreshUserProfile // Add refresh function
   };
 
   return (
@@ -65,4 +102,4 @@ export function AuthProvider({ children }) {
       {!loading && children}
     </AuthContext.Provider>
   );
-} 
+}
