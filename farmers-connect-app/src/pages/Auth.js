@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { auth } from '../firebaseConfig';
+import { auth, db } from '../firebaseConfig'; // Import db
 import { 
   signInWithPopup, 
   GoogleAuthProvider, 
@@ -9,21 +9,46 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword
 } from 'firebase/auth';
+import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore'; // Import Firestore functions
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isFarmer, setIsFarmer] = useState(false); // State for farmer checkbox
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  // Function to create user document in Firestore
+  const createUserDocument = async (user, isFarmerOverride = null) => {
+    if (!user) return;
+    const userRef = doc(db, "users", user.uid);
+    try {
+      await setDoc(userRef, {
+        uid: user.uid,
+        email: user.email,
+        isFarmer: typeof isFarmerOverride === 'boolean' ? isFarmerOverride : isFarmer,
+        createdAt: serverTimestamp()
+      });
+    } catch (firestoreError) {
+      console.error("Error creating user document:", firestoreError);
+      setError("Error creating user profile. Please try again. " + firestoreError.message);
+      // Potentially sign out the user if profile creation fails critical to app logic
+      // await auth.signOut();
+      // navigate('/auth'); // Or some error page
+      throw firestoreError; // Re-throw to be caught by calling function
+    }
+  };
+
   const handleEmailAuth = async (e) => {
     e.preventDefault();
+    setError(''); // Clear previous errors
     try {
       if (isLogin) {
         await signInWithEmailAndPassword(auth, email, password);
       } else {
-        await createUserWithEmailAndPassword(auth, email, password);
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        await createUserDocument(userCredential.user); // Create Firestore doc
       }
       navigate('/my-farm');
     } catch (error) {
@@ -31,24 +56,33 @@ const Auth = () => {
     }
   };
 
-  const handleGoogleSignIn = async () => {
+  const handleSocialSignIn = async (provider) => {
+    setError(''); // Clear previous errors
     try {
-      const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      // Check if user document already exists
+      const userRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(userRef);
+
+      if (!docSnap.exists()) {
+        // New user, create document with default isFarmer: false
+        await createUserDocument(user, false);
+      }
+      // If docSnap.exists(), user profile already exists, no action needed here for isFarmer status
       navigate('/my-farm');
     } catch (error) {
       setError(error.message);
     }
   };
 
-  const handleFacebookSignIn = async () => {
-    try {
-      const provider = new FacebookAuthProvider();
-      await signInWithPopup(auth, provider);
-      navigate('/my-farm');
-    } catch (error) {
-      setError(error.message);
-    }
+  const handleGoogleSignIn = () => {
+    handleSocialSignIn(new GoogleAuthProvider());
+  };
+
+  const handleFacebookSignIn = () => {
+    handleSocialSignIn(new FacebookAuthProvider());
   };
 
   return (
@@ -89,6 +123,22 @@ const Auth = () => {
               required
             />
           </div>
+
+          {!isLogin && (
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                id="isFarmer"
+                checked={isFarmer}
+                onChange={(e) => setIsFarmer(e.target.checked)}
+                className="mr-2 h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+              />
+              <label htmlFor="isFarmer" className="text-primary-700">
+                Register as a Farmer?
+              </label>
+            </div>
+          )}
+
           <button
             type="submit"
             className="w-full bg-primary-600 text-white py-2 rounded-lg hover:bg-primary-700 transition"
@@ -139,4 +189,4 @@ const Auth = () => {
   );
 };
 
-export default Auth; 
+export default Auth;
