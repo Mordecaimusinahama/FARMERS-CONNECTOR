@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ADMA Client Registration - Farmers Connector</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Register your company for ADMA Trade Fair 2024. Connect with farmers and showcase your agricultural products and services.">
+    <meta name="keywords" content="ADMA trade fair, agricultural exhibition, Zimbabwe farming, Zambia farming, agricultural technology">
+    <meta name="author" content="Pique Squid Consultancy">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="ADMA Client Registration - Farmers Connector">
+    <meta property="og:description" content="Register your company for ADMA Trade Fair 2024">
+    <meta property="og:image" content="https://farmersconnect.piquesquid.com/assets/images/og-image.jpg">
+    <meta property="og:url" content="https://farmersconnect.piquesquid.com/adma-clients">
+    
+    <!-- Styles -->
+    <link href="assets/vendors/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendors/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="fbs__net-navbar navbar navbar-expand-lg dark" aria-label="Farmers Connector navbar">
+        <div class="container d-flex align-items-center justify-content-between">
+            <!-- Start Logo-->
+            <a class="navbar-brand w-auto" href="index.html">
+                <!-- logo dark-->
+                <img class="logo dark img-fluid" src="assets/images/logofc.png" alt="Farmers Connector Logo"> 
+                <!-- logo light-->
+                <img class="logo light img-fluid" src="assets/images/logofc.png alt="Farmers Connector Logo">
+            </a>
+            <!-- End Logo-->
+            
+            <!-- Start offcanvas-->
+            <div class="offcanvas offcanvas-start w-75" id="fbs__net-navbars" tabindex="-1" aria-labelledby="fbs__net-navbarsLabel">
+                <div class="offcanvas-header">
+                    <div class="offcanvas-header-logo">
+                        <a class="logo-link" id="fbs__net-navbarsLabel" href="index.html">
+                            <!-- logo dark-->
+                            <img class="logo dark img-fluid" src="assets/images/logofc.png" alt="Farmers Connector Logo"> 
+                            <!-- logo light-->
+                            <img class="logo light img-fluid" src="assets/images/logofc.png alt="Farmers Connector Logo">
+                        </a>
+                    </div>
+                    <button class="btn-close btn-close-black" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                
+                <div class="offcanvas-body align-items-lg-center">
+                    <ul class="navbar-nav nav me-auto ps-lg-5 mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="get-started.html">Get Started</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- End offcanvas-->
+            
+            <div class="ms-auto w-auto">
+                <div class="header-social d-flex align-items-center gap-1">
+                    <button class="fbs__net-navbar-toggler justify-content-center align-items-center ms-auto" data-bs-toggle="offcanvas" data-bs-target="#fbs__net-navbars" aria-controls="fbs__net-navbars" aria-label="Toggle navigation" aria-expanded="false">
+                        <svg class="fbs__net-icon-menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="21" x2="3" y1="6" y2="6"></line>
+                            <line x1="15" x2="3" y1="12" y2="12"></line>
+                            <line x1="17" x2="3" y1="18" y2="18"></line>
+                        </svg>
+                        <svg class="fbs__net-icon-close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 6 6 18"></path>
+                            <path d="m6 6 12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="card shadow-lg">
+                            <div class="card-body p-5">
+                                <h1 class="text-center mb-4">ADMA Trade Fair 2024 Registration</h1>
+                                <p class="text-center mb-4">Register your company to participate in the Agricultural Development and Marketing Authority (ADMA) Trade Fair 2024. Connect with farmers and showcase your products and services.</p>
+                                
+                                <div id="form-messages"></div>
+
+                                <form id="adma-registration-form" method="POST" action="adma-registration.php" class="needs-validation" novalidate>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="company_name" class="form-label">Company Name *</label>
+                                            <input type="text" class="form-control" id="company_name" name="company_name" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="registration_number" class="form-label">Business Registration Number *</label>
+                                            <input type="text" class="form-control" id="registration_number" name="registration_number" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="contact_person" class="form-label">Contact Person *</label>
+                                            <input type="text" class="form-control" id="contact_person" name="contact_person" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="phone" class="form-label">Phone Number *</label>
+                                            <input type="tel" class="form-control" id="phone" name="phone" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email Address *</label>
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="business_type" class="form-label">Business Type *</label>
+                                        <select class="form-select" id="business_type" name="business_type" required>
+                                            <option value="">Select Business Type</option>
+                                            <option value="equipment">Agricultural Equipment</option>
+                                            <option value="seeds">Seeds & Inputs</option>
+                                            <option value="technology">Agricultural Technology</option>
+                                            <option value="services">Agricultural Services</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="products_services" class="form-label">Products/Services Description *</label>
+                                        <textarea class="form-control" id="products_services" name="products_services" rows="3" required></textarea>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="booth_size" class="form-label">Preferred Booth Size *</label>
+                                        <select class="form-select" id="booth_size" name="booth_size" required>
+                                            <option value="">Select Booth Size</option>
+                                            <option value="small">Small (3m x 3m)</option>
+                                            <option value="medium">Medium (3m x 6m)</option>
+                                            <option value="large">Large (6m x 6m)</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label for="special_requirements" class="form-label">Special Requirements</label>
+                                        <textarea class="form-control" id="special_requirements" name="special_requirements" rows="2"></textarea>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary btn-lg">Submit Registration</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <!-- Include your footer content here -->
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Form validation
+        (function () {
+            'use strict'
+            var forms = document.querySelectorAll('.needs-validation')
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+
+        // Form submission with AJAX
+        $(document).ready(function() {
+            $('#adma-registration-form').on('submit', function(e) {
+                e.preventDefault();
+                
+                var formData = $(this).serialize();
+                
+                $.ajax({
+                    type: 'POST',
+                    url: 'adma-registration.php',
+                    data: formData,
+                    success: function(response) {
+                        $('#form-messages').html('<div class="alert alert-success">Thank you for your registration! We\'ll contact you shortly with further details.</div>');
+                        $('#adma-registration-form')[0].reset();
+                    },
+                    error: function() {
+                        $('#form-messages').html('<div class="alert alert-danger">Sorry, there was an error submitting your registration. Please try again.</div>');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

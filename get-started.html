@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Get Started - Farmers Connector</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Join Farmers Connector - Zimbabwe's leading agricultural technology platform. Get started with smart farming solutions today.">
+    <meta name="keywords" content="smart farming, agricultural technology, Zimbabwe farming, Zambia farming, precision agriculture">
+    <meta name="author" content="Pique Squid Consultancy">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Get Started - Farmers Connector">
+    <meta property="og:description" content="Join Zimbabwe's leading agricultural technology platform">
+    <meta property="og:image" content="https://farmersconnect.piquesquid.com/assets/images/og-image.jpg">
+    <meta property="og:url" content="https://farmersconnect.piquesquid.com/get-started">
+    
+    <!-- Styles -->
+    <link href="assets/vendors/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendors/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    
+    <!-- reCAPTCHA -->
+  <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="fbs__net-navbar navbar navbar-expand-lg dark" aria-label="Farmers Connector navbar">
+        <div class="container d-flex align-items-center justify-content-between">
+            <!-- Start Logo-->
+            <a class="navbar-brand w-auto" href="index.html">
+                <!-- logo dark-->
+                <img class="logo dark img-fluid" style="width:130px" src="assets/images/logofc.png" alt="Farmers Connector Logo"> 
+                <!-- logo light-->
+                <img class="logo light img-fluid" style="width:130px" src="assets/images/logofc.png alt="Farmers Connector Logo">
+            </a>
+            <!-- End Logo-->
+            
+            <!-- Start offcanvas-->
+            <div class="offcanvas offcanvas-start w-75" id="fbs__net-navbars" tabindex="-1" aria-labelledby="fbs__net-navbarsLabel">
+                <div class="offcanvas-header">
+                    <div class="offcanvas-header-logo">
+                        <a class="logo-link" id="fbs__net-navbarsLabel" href="index.html">
+                            <!-- logo dark-->
+                            <img class="logo dark img-fluid" style="width:100px" src="assets/images/logofc.png" alt="Farmers Connector Logo"> 
+                            <!-- logo light-->
+                            <img class="logo light img-fluid" style="width:100px" src="assets/images/logofc.png alt="Farmers Connector Logo">
+                        </a>
+                    </div>
+                    <button class="btn-close btn-close-black" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                
+                <div class="offcanvas-body align-items-lg-center">
+                    <ul class="navbar-nav nav me-auto ps-lg-5 mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="get-started.html">Get Started</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- End offcanvas-->
+            
+            <div class="ms-auto w-auto">
+                <div class="header-social d-flex align-items-center gap-1">
+                    <button class="fbs__net-navbar-toggler justify-content-center align-items-center ms-auto" data-bs-toggle="offcanvas" data-bs-target="#fbs__net-navbars" aria-controls="fbs__net-navbars" aria-label="Toggle navigation" aria-expanded="false">
+                        <svg class="fbs__net-icon-menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="21" x2="3" y1="6" y2="6"></line>
+                            <line x1="15" x2="3" y1="12" y2="12"></line>
+                            <line x1="17" x2="3" y1="18" y2="18"></line>
+                        </svg>
+                        <svg class="fbs__net-icon-close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 6 6 18"></path>
+                            <path d="m6 6 12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section style="margin-top: 200px;" class="section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="card shadow-lg">
+                            <div class="card-body p-5">
+                                <h1 class="text-center mb-4">Get Started with Farmers Connector</h1>
+                                
+                                <div id="form-messages"></div>
+
+                                <form id="get-started-form" method="POST" action="getting-started.php" class="needs-validation" novalidate>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="name" class="form-label">Full Name *</label>
+                                            <input type="text" class="form-control" id="name" name="name" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="email" class="form-label">Email Address *</label>
+                                            <input type="email" class="form-control" id="email" name="email" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="phone" class="form-label">Phone Number *</label>
+                                            <input type="tel" class="form-control" id="phone" name="phone" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="farm_size" class="form-label">Farm Size (Hectares) *</label>
+                                            <input type="number" class="form-control" id="farm_size" name="farm_size" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="location" class="form-label">Farm Location *</label>
+                                        <input type="text" class="form-control" id="location" name="location" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="crops" class="form-label">Current Crops *</label>
+                                        <textarea class="form-control" id="crops" name="crops" rows="2" required></textarea>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="challenges" class="form-label">Main Farming Challenges *</label>
+                                        <textarea class="form-control" id="challenges" name="challenges" rows="3" required></textarea>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label for="goals" class="form-label">Your Farming Goals *</label>
+                                        <textarea class="form-control" id="goals" name="goals" rows="3" required></textarea>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <!-- <div class="g-recaptcha" data-sitekey="6LeccVgrAAAAAEwE1KU0fI-Y3GYN2uy8wZN58HT-"></div> -->
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary btn-lg">Submit Application</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <!-- Include your footer content here -->
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Form validation
+        (function () {
+            'use strict'
+            var forms = document.querySelectorAll('.needs-validation')
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+
+        // Form submission with AJAX
+        $(document).ready(function() {
+            $('#get-started-form').on('submit', function(e) {
+                e.preventDefault();
+                
+                var formData = $(this).serialize();
+                
+                $.ajax({
+                    type: 'POST',
+                    url: 'getting-started.php',
+                    data: formData,
+                    success: function(response) {
+                        $('#form-messages').html('<div class="alert alert-success">Thank you for your interest! We\'ll contact you shortly.</div>');
+                        $('#get-started-form')[0].reset();
+                    },
+                    error: function() {
+                        $('#form-messages').html('<div class="alert alert-danger">Sorry, there was an error submitting your form. Please try again.</div>');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

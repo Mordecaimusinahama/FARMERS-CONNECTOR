@@ -1,0 +1,28 @@
+# robots.txt for Farmers Connector
+# Allow all search engines full access
+User-agent: *
+Allow: /
+
+# Disallow sensitive files and directories
+Disallow: /admin/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /private/
+Disallow: /config/
+
+# Allow Googlebot full access
+User-agent: Googlebot
+Allow: /
+
+# Allow Bingbot full access
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 5
+
+# Allow Yandex full access
+User-agent: Yandex
+Allow: /
+Crawl-delay: 10
+
+# Sitemap location
+Sitemap: https://farmersconnect.piquesquid.com/sitemap.xml 
